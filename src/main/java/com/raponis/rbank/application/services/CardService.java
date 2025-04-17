@@ -55,10 +55,9 @@ public class CardService implements CardServiceInterface {
   public List<Card> deleteCardById(String id, Optional<String> accountId) {
     this.mongoCardRepository.deleteById(id);
     if (accountId.isPresent()) {
-      Query query = new Query(Criteria.where("accountId").is(accountId));
-      List<Card> accountCards = mongoTemplate.find(query, Card.class);
-      if (accountCards.isEmpty()) {
-        throw new Error("Parece que você não possui cartões");
+      List<Card> accountCards = this.findAccountCards(accountId.get());
+      if (accountCards.size() < 1) {
+        throw new Error("Opa! Parece que você não possui contas ainda...");
       } else {
         return accountCards;
       }
