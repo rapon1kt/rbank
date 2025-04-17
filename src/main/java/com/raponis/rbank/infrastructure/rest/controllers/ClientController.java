@@ -32,26 +32,18 @@ public class ClientController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Client> findClientById(@PathVariable("id") String id) {
-    Optional<Client> client = this.clientService.findClientById(id);
-    return client.map((value) -> new ResponseEntity<>(value, HttpStatus.OK))
-        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+  public Optional<Client> findClientById(@PathVariable("id") String id) {
+    return this.clientService.findClientById(id);
   }
 
   @PostMapping
-  public ResponseEntity<Client> registerNewClient(@RequestBody Client client) {
-    Client newClient = this.clientService.registerNewClient(client);
-    return new ResponseEntity<>(newClient, HttpStatus.CREATED);
+  public Client registerNewClient(@RequestBody Client client) {
+    return this.clientService.registerNewClient(client);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Client> updateClientById(@PathVariable("id") String id, @RequestBody Client clientToUpdate) {
-    Client clientToUpdateResult = clientService.updateClientById(id, clientToUpdate);
-    if (clientToUpdateResult != null) {
-      return new ResponseEntity<>(clientToUpdateResult, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+  public Client updateClientById(@PathVariable("id") String id, @RequestBody Client clientToUpdate) {
+    return this.clientService.updateClientById(id, clientToUpdate);
   }
 
   @DeleteMapping("/{id}")
