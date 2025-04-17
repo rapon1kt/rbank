@@ -33,12 +33,8 @@ public class ClientService implements ClientServiceInterface {
 
   @Override
   public Client updateClientById(String id, Client clientToUpdate) {
-    Optional<Client> clientExistent = this.mongoClientRepository.findById(clientToUpdate.getId());
-    if (clientExistent.isPresent()) {
-      clientToUpdate.setName("caralho seu delicioso rsrs");
-      return this.mongoClientRepository.save(clientToUpdate);
-    } else
-      throw new Error("This user not exists.");
+    clientToUpdate.setId(id);
+    return this.mongoClientRepository.save(clientToUpdate);
   }
 
   @Override
@@ -46,5 +42,4 @@ public class ClientService implements ClientServiceInterface {
     this.mongoClientRepository.deleteById(id);
     return this.findAllClients();
   }
-
 }

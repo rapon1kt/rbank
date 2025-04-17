@@ -56,11 +56,7 @@ public class CardService implements CardServiceInterface {
     this.mongoCardRepository.deleteById(id);
     if (accountId.isPresent()) {
       List<Card> accountCards = this.findAccountCards(accountId.get());
-      if (accountCards.size() < 1) {
-        throw new Error("Opa! Parece que você não possui contas ainda...");
-      } else {
-        return accountCards;
-      }
+      return accountCards;
     } else
       return this.findAllCards();
   }
