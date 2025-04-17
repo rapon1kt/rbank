@@ -15,10 +15,8 @@ public interface AccountServiceInterface {
 
   Account updateAccountById(String id, Account account);
 
-  List<Account> deleteAccountById(String id);
+  List<Account> deleteAccountById(String id, Optional<String> ownerId);
 
   List<Account> findAccountsByOwnerId(String ownerId);
-
-  List<Account> deleteAccountsByOwnerId(String ownerId);
 
 }
