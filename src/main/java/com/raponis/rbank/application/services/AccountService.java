@@ -42,13 +42,7 @@ public class AccountService implements AccountServiceInterface {
   @Override
   public Account updateAccountById(String id, Account account) {
     account.setId(id);
-    return mongoTemplate.save(account);
-  }
-
-  @Override
-  public List<Account> deleteAccountById(String id) {
-    this.mongoAccountRepository.deleteById(id);
-    return this.findAllAccounts();
+    return this.mongoAccountRepository.save(account);
   }
 
   @Override
@@ -58,10 +52,12 @@ public class AccountService implements AccountServiceInterface {
   }
 
   @Override
-  public List<Account> deleteAccountsByOwnerId(String ownerId) {
-    Query query = new Query(Criteria.where("ownerId").is(ownerId));
-    this.mongoTemplate.remove(query, Account.class);
-    return this.findAccountsByOwnerId(ownerId);
+  public List<Account> deleteAccountById(String id, Optional<String> ownerId) {
+    this.mongoAccountRepository.deleteById(id);
+    if (ownerId.isPresent()) {
+      List<Account> ownerAccounts = this.findAccountsByOwnerId(ownerId.get());
+      return ownerAccounts;
+    }
+    return this.findAllAccounts();
   }
-
 }
