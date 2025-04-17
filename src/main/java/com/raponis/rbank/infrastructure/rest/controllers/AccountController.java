@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.raponis.rbank.application.services.AccountService;
@@ -44,19 +45,14 @@ public class AccountController {
     return this.accountService.updateAccountById(id, account);
   }
 
-  @DeleteMapping("/{id}")
-  public List<Account> deleteAccountById(@PathVariable("id") String id) {
-    return this.accountService.deleteAccountById(id);
-  }
-
   @GetMapping("/of/{ownerId}")
   public List<Account> findAccountByOwnerId(@PathVariable("ownerId") String ownerId) {
     return this.accountService.findAccountsByOwnerId(ownerId);
   }
 
-  @DeleteMapping("/of/{ownerId}")
-  public List<Account> deleteAccountByOwnerId(@PathVariable("ownerId") String ownerId) {
-    return this.accountService.deleteAccountsByOwnerId(ownerId);
+  @DeleteMapping("/{id}")
+  public List<Account> deleteAccountById(@PathVariable("id") String id,
+      @RequestParam("ownerId") Optional<String> ownerId) {
+    return this.accountService.deleteAccountById(id, ownerId);
   }
-
 }
