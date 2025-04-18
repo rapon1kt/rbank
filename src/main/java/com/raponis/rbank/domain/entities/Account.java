@@ -1,5 +1,7 @@
 package com.raponis.rbank.domain.entities;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +14,6 @@ public class Account {
   private String id;
   private String ownerId;
   private String agency;
-  private Number cash;
+  private BigDecimal cash;
   private String type;
 }
