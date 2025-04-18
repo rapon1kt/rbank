@@ -7,7 +7,7 @@ import com.raponis.rbank.domain.entities.Transaction;
 
 public interface TransactionServiceInterface {
 
-  Transaction releaseNewTransaction(Transaction transaction);
+  Transaction releaseNewTransaction(Transaction transaction, String accountOriginId, String accountDestinyId);
 
   Optional<Transaction> findTransactionById(String transactionId);
 
