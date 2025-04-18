@@ -1,5 +1,6 @@
 package com.raponis.rbank.application.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AccountService implements AccountServiceInterface {
   @Override
   public Account createNewAccount(String ownerId, Account newAccount) {
     newAccount.setOwnerId(ownerId);
-    newAccount.setCash(0);
+    newAccount.setCash(new BigDecimal(0));
     return this.mongoAccountRepository.save(newAccount);
   }
 
