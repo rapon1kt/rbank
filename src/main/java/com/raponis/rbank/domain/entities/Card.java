@@ -1,6 +1,7 @@
 package com.raponis.rbank.domain.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -10,7 +11,9 @@ import lombok.Data;
 public class Card {
   @Id
   private String id;
-  private String accountId;
+  @DBRef
+  private Account accountOwner;
+
   private Number pin;
   private Number cardNumber;
   private Number cardVerificationValue;

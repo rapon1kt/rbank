@@ -14,7 +14,7 @@ public class Account {
   @Id
   private String id;
   @DBRef
-  private Client ownerId;
+  private Client owner;
 
   private String agency;
   private BigDecimal cash;
