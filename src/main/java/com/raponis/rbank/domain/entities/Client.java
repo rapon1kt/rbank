@@ -17,7 +17,8 @@ public class Client {
   private String name;
   private String email;
   private String password;
-  private Number phone;
+  private String ddd;
+  private String phoneNumber;
   private Address address;
   private String officialDocument;
   private Number rent;
