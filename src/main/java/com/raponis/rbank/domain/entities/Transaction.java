@@ -1,6 +1,5 @@
 package com.raponis.rbank.domain.entities;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -19,7 +18,7 @@ public class Transaction {
   private String id;
   private String type;
   private String status;
-  private BigDecimal value;
+  private int value;
   private String accountOriginId;
   private String accountDestinyId;
   private Optional<String> description;
