@@ -19,7 +19,7 @@ public class Client {
   private String password;
   private Number phone;
   private Address address;
-  private String officialDocument;
+  private String cpf;
   private Number rent;
   private List<Account> accounts;
 }
