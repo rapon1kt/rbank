@@ -20,6 +20,6 @@ public class Client {
   private Number phone;
   private Address address;
   private String officialDocument;
-  private Number rent;
+  private int rent;
   private List<Account> accounts;
 }
